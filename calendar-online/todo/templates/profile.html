@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+{% if user.first_name and user.first_name %}
+    {{ user.first_name }} {{ user.first_name }}
+{% else %}
+    {{ user.username }}
+{% endif %}
+{% endblock %}
+
+
+{% block main %}
+    <h1>
+        {% if user.first_name and user.first_name %}
+            {{ user.first_name }} {{ user.first_name }}
+        {% else %}
+            {{ user.username }}
+        {% endif %}
+    </h1>
+{% if user.avatar %}
+    <img src="{{  url_for('calendar.get_upload', filename=user.avatar)  }}" alt="" class="avatar">
+{% endif %}
+    <form action="{{ url_for('auth.profile') }}" method="POST" enctype="multipart/form-data">
+        <label fir="first_name">Name</label>
+        <input type="text" name="first_name" id="first_name">
+
+        <label fir="last_name">Last name</label>
+        <input type="text" name="last_name" id="last_name">
+
+        <label fir="first_name">avatar</label>
+        <input type="file" name="avatar" id="avatar">
+
+        <button type="submit">Change</button>
+    </form>
+{% endblock %}

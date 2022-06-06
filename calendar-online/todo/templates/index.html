@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    TODO List
+{% endblock %}
+
+{% block body_classes %}blue-background{% endblock %}
+
+{% block main %}
+
+{% include 'user_info.html' %}
+
+<h1>{{ month[3][0].strftime('%B, %Y') }}</h1>
+
+<div class="main-container">
+    <div class="calendar-container">
+        <div class="buttons-navigation">
+            <form action="{{ url_for('calendar.back_month') }}" method="POST" class="button-back">
+                
+                <button type="submit"> < Back</button>
+            </form>
+            <form action="{{ url_for('calendar.index') }}" method="POST" class="button-refresh">
+                <button type="submit"> Current month</button>
+            </form>
+            <form action="{{ url_for('calendar.next_month') }}" method="POST" class="button-nexts"> 
+                   
+                    <button type="submit"> Next ></button>
+            </form>
+        </div>
+        <table class="calendar">
+            {% for week in month %}
+                <tr>
+                    {% for day in week %}
+                        <td>
+                            
+                            {% if today == day and user %}
+                                <a href="{{url_for('calendar.day',date=day.strftime('%d-%m-%y'))}}" class="link-to-todo"><b>today:{{ day.day }}</b></a>
+                            
+                            {% elif user %}
+
+                                <a href="{{url_for('calendar.day',date=day.strftime('%d-%m-%y'))}}" class="link-to-todo">{{ day.day }}</a>
+                            
+                            {% else %}
+                            
+                                {{ day.day }}
+                            
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    <div class="todo-container">
+        <ul class="todo-list">
+
+            <li class="todo-list-item">
+                Monday
+                <ul>
+                </ul>
+            </li>
+           <li class="todo-list-item">
+                Tuesday
+                <ul>
+                    
+                </ul>
+            </li>
+            <li class="todo-list-item">
+                Wendesday
+                <ul>
+                    
+                </ul>
+            </li>
+            <li class="todo-list-item">
+                
+                <ul>
+                    
+                </ul>
+            </li>
+            <li class="todo-list-item">
+                Friday
+                <ul>
+                    
+                </ul>
+            </li>
+            <li class="todo-list-item">
+                Monday
+                <ul>
+                    
+                </ul>
+            </li>
+            <li class="todo-list-item">
+                Sunday
+                <ul>
+                    
+                </ul>
+            </li>
+        </ul>
+    
+    </div>
+</div>
+{% endblock %}

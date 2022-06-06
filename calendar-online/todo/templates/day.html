@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Task
+{% endblock %}
+
+{% block main %}
+    {% include 'user_info.html' %}
+    
+    <h1>{{ date }}</h1>
+    
+    {% if todos %}
+        <ul class="todo-list">
+            {% for todo in todos %}
+                <li class="todo-list-item"><a href="{{ url_for('calendar.todo', id=todo['id']) }}">{{ todo['name'] }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <form class="todo-form" action="{{ url_for('calendar.day', date=date) }}" method="POST">
+        <input class="todo-input" type="text" name="todo" placeholder="New Task">
+        <button class="todo-button" type="submit">Submit</button>
+    </form>
+    
+    <h3><a href="{{ url_for('calendar.index') }}">on main</a></h3>
+
+{% endblock %}

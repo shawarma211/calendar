@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    All Deals
+{% endblock %}
+
+{% block main %}
+
+{% include 'user_info.html' %}
+
+<h1>TODO List</h1>
+
+{% if todos %}
+    <ul class="todo-list">
+        {% for todo in todos %}
+            <li class="todo-list-item">
+                <a href="{{ url_for('calendar.todo', id=todo['id']) }}">{{ todo['name']}} - {{todo['date'] }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form class="todo-form" action="{{ url_for('calendar.all_todos', date=date) }}" method="POST">
+    <input class="todo-input" type="text" name="todo" placeholder="New Task">
+    <input class="todo-date" type="date" name="date" placeholder="New Task">
+    <button class="todo-button" type="submit">Submit</button>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block main %}
+
+<form action="{{ url_for('auth.login') }}" method="POST" class="auth-form">
+    <p><label for="username" class="auth-label" >Username</label>
+    <input id="username" type="text" name="username" class="auth-input"></p>
+
+    <p><label for="password" class="auth-label">Password</label>
+    <input id="password" type="password" name="password" class="auth-input"></p>
+
+    <button type="submit" class="todo-button">Sign In</button>
+</form>
+
+{% endblock %}

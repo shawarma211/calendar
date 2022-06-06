@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Task
+{% endblock %}
+
+{% block main %}
+    {% include 'user_info.html' %}
+
+    <h1>{{ todo['name'] }}</h1>
+    <p>Сделано: {{ todo['is_done'] }}</p>
+    <p>дата: {{ todo['date'] }}</p>
+
+    <form action="{{ url_for('calendar.delete', id=todo['id'], date=todo['date']) }}" method="POST">
+        <button type="submit">delete</button>
+    </form>
+{% endblock %}
